@@ -1,0 +1,39 @@
+<template name="layout">
+<head>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+	<div id="wrap">
+        <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+            <div class="container-full">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button>
+                    <a href="{{pathFor 'home'}}" class="navbar-brand" style="padding-top:2px;padding-bottom:2px">
+                            <img src="jonckers.png" alt="logo" height="46" />
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        {{> loginButtons }}        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container-full">
+        	{{> yield }}
+        </div>
+		<div id="push"></div>
+	</div>
+	<footer id="footer">
+        <div class="container-full">
+            <div class="pull-left">
+                <label>Copyright &copy; 2014 Jonckers Translation and Engineering</label>
+            </div>
+        </div>
+    </footer>
+</body>
+</template>
