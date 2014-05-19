@@ -3,6 +3,118 @@
 </head>
 <template name="index">
 	<div class="row">
-		<h1>Home Page</h1>
-	</div>	
+		<div class="col-sm-3">
+			<div class="panel">
+				<div class="panel-heading">
+					<h4><b>Rank</b></h4>
+				</div>
+				<div class="panel-body">
+					<table class="table table-striped">
+						<thead>
+							<th>Rank</th>
+							<th>Username</th>
+							<th>Score</th>
+						</thead>
+						<tbody>
+							{{#each ranks}}
+							<tr>
+								<td>{{rank}}</td>
+								<td>{{username}}</td>
+								<td>{{score}}</td>
+							</tr>
+							{{/each}}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-9">
+			<div class="panel">
+				<div class="panel-heading">
+					<h4><b>Bet Infomation</b></h4>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<h4>Thursday 12 June</h4>
+						<div class="col-sm-3">							
+							<h5>Barazil vs Croatia</h5>
+							<table class="table table-striped">
+								<thead>
+									<th>No.</th>
+									<th>Name</th>
+									<th>Score</th>
+								</thead>
+								<tbody>
+								{{#each pridicts}}
+								<tr>
+									<td>{{no}}</td>
+									<td>{{name}}</td>
+									<td>{{score}}</td>
+								</tr>
+								{{/each}}
+								</tbody>
+							</table>		
+						</div>
+						<div class="col-sm-3">							
+							<h5>Barazil vs Croatia</h5>
+							<table class="table table-striped">
+								<thead>
+									<th>No.</th>
+									<th>Name</th>
+									<th>Score</th>
+								</thead>
+								<tbody>
+								{{#each pridicts}}
+								<tr>
+									<td>{{no}}</td>
+									<td>{{name}}</td>
+									<td>{{score}}</td>
+								</tr>
+								{{/each}}
+								</tbody>
+							</table>		
+						</div>
+						<div class="col-sm-3">							
+							<h5>Barazil vs Croatia</h5>
+							<table class="table table-striped">
+								<thead>
+									<th>No.</th>
+									<th>Name</th>
+									<th>Score</th>
+								</thead>
+								<tbody>
+								{{#each pridicts}}
+								<tr>
+									<td>{{no}}</td>
+									<td>{{name}}</td>
+									<td>{{score}}</td>
+								</tr>
+								{{/each}}
+								</tbody>
+							</table>		
+						</div>
+						<div class="col-sm-3">							
+							<h5>Barazil vs Croatia</h5>
+							<table class="table table-striped">
+								<thead>
+									<th>No.</th>
+									<th>Name</th>
+									<th>Score</th>
+								</thead>
+								<tbody>
+								{{#each pridicts}}
+								<tr>
+									<td>{{no}}</td>
+									<td>{{name}}</td>
+									<td>{{score}}</td>
+								</tr>
+								{{/each}}
+								</tbody>
+							</table>		
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
