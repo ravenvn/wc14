@@ -10,4 +10,8 @@ Router.map(function() {
 		template: 'index'
 	});
 	this.route('bet');
-})
+	this.route('input_matches', {
+		path: '/input-matches',
+		template: 'input_matches'
+	})
+});

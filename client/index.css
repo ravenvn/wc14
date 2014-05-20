@@ -57,6 +57,15 @@ h1, h2, h3, h4, h5, h6, p {
     margin-right: 0;
 }
 
+#btn-add {
+    color: #fff;
+    background-color: #000;
+}
+
+#btn-add:hover {
+    color: #0f0;
+}
+
 @media screen and (max-width: 768px) {
     .form-element {
         padding:0;
