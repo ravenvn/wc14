@@ -9,5 +9,5 @@ Router.map(function() {
 		path: '/',
 		template: 'index'
 	});
-	this.route('about');
+	this.route('bet');
 })

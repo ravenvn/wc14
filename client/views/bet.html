@@ -1,0 +1,67 @@
+<template name="bet">
+	<div class="row">
+		{{#each matches}}	
+			<div class="col-sm-6">
+				<div class="panel panel-default text-center">
+					<div class="panel-heading">
+						<h4>{{date}}</h4>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-xs-4 form-element">
+								<h4>{{team1}}</h4>
+							</div>
+							<div class="col-xs-1"><h4>vs</h4></div>
+							<div class="col-xs-4 form-element">
+								<h4>{{team2}}</h4>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-4 form-element">
+								<select class="form-control">
+									{{#each goals}}
+										<option value="{{goal}}">{{goal}}</option>	
+									{{/each}}
+								</select>		
+							</div>
+							<div class="col-xs-1"> - </div>
+							<div class="col-xs-4 form-element">
+								<select class="form-control">
+									{{#each goals}}
+										<option value="{{goal}}">{{goal}}</option>	
+									{{/each}}
+								</select>		
+							</div>
+							<div class="col-xs-2">
+								<button class="btn btn-primary">BET</button>
+							</div>
+						</div>
+						<div class="row">
+							<h4>Your bet: {{goal1}} - {{goal2}}</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		{{/each}}
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4>Bonus question</h4>
+				</div>
+				<div class="panel-body">
+					<h4>{{question}}</h4>
+					<div class="row">
+						<div class="col-xs-4 form-element"><input type="text" class="form-control"/></div>
+						<div class="col-xs-3"><button class="btn btn-primary">Answer</button></div>						
+					</div>
+					<div class="row">
+						<h4>Your answer: {{answer}}</h4>	
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
