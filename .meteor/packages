@@ -9,4 +9,9 @@ insecure
 bootstrap-3
 accounts-password
 accounts-ui-bootstrap-3
+moment
+bootstrap3-datetimepicker
+font-awesome
+moment-timezone
+roles
 iron-router

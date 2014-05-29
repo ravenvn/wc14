@@ -3,7 +3,7 @@
 		<div class="col-sm-10 col-sm-offset-1">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h4>Matches List</h4>					
+					<h4>Matches List</h4>
 				</div>
 				<div class="panel-body">
 					<table class="table table-striped">
@@ -12,25 +12,51 @@
 							<th>Team 1</th>
 							<th>Team 2</th>
 							<th>Score</th>
-							<th>Time</th>					
+							<th>Time</th>
 						</thead>
 						<tbody>
+							{{for}}
 							{{#each matches}}
 								<tr>
-									<td>{{no}}</td>
-									<td>{{team1}}</td>
-									<td>{{team2}}</td>
-									<td>{{score}}</td>
+									<td>{{index}}</td>
+									<td><img src="{{team1.flag}}" alt="{{team1.name}}">{{team1.name}}</td>
+									<td><img src="{{team2.flag}}" alt="{{team2.name}}">{{team2.name}}</td>
+									{{#if editing}}
+										<td>
+										<input type="text" id="edit_score" class="form-control pull-right" value="{{goal1}} - {{goal2}}"/>
+										</td>
+									{{else}}
+										<td class="score">{{goal1}} - {{goal2}}</td>
+									{{/if}}
 									<td>{{time}}</td>
+									<td><button type="button" class="close delete_item" id="{{_id}}">x</button></td>
 								</tr>
 							{{/each}}
 							{{#if adding}}
 								<tr>
-									<td>{{matches.length}}</td>
-									<td><input type="text" value="" id="add-team1" class="form-control form-element"/></td>
-									<td><input type="text" value="" class="form-control form-element"/></td>
-									<td><input type="text" value="" class="form-control form-element"/></td>
-									<td><input type="text" value="" class="form-control form-element"/></td>
+									<td></td>
+									<td>
+										<select name="team1" id="team1" class="form-control">
+											{{#each teams}}
+												<option value="{{flag}}">{{name}}</option>
+											{{/each}}
+										</select>
+									</td>
+									<td>
+										<select name="team2" id="team2" class="form-control">
+											{{#each teams}}
+												<option value="{{flag}}">{{name}}</option>
+											{{/each}}
+										</select>
+									</td>
+									<td>
+									</td>
+									<td>
+										<div class="input-group" id="datetimepicker">
+					    					<input class="set-due-date form-control" type="text" id="time"/>
+					     					<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+										</div>
+									</td>
 								</tr>
 								<tr>
 									<td colspan="5">
@@ -43,9 +69,10 @@
 							{{/if}}
 						</tbody>
 					</table>
-					<div class="btn btn-inverse" id="btn-add">&plus;</div>					
+					<div class="btn btn-inverse" id="btn-add">&plus;</div>
+					<!-- <div>{{moment()}}</div> -->
 				</div>
-			</div>			
+			</div>
 		</div>
 	</div>
 </template>

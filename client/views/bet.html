@@ -9,16 +9,16 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-xs-4 form-element">
-								<h4>{{team1}}</h4>
+								<h4><img src="{{team1.flag}}" alt="{{team1.name}}"> {{team1.name}}</h4>
 							</div>
 							<div class="col-xs-1"><h4>vs</h4></div>
 							<div class="col-xs-4 form-element">
-								<h4>{{team2}}</h4>
+								<h4><img src="{{team2.flag}}" alt="{{team2.name}}"> {{team2.name}}</h4>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-xs-4 form-element">
-								<select class="form-control">
+								<select class="form-control goals1">
 									{{#each goals}}
 										<option value="{{goal}}">{{goal}}</option>	
 									{{/each}}
@@ -26,18 +26,18 @@
 							</div>
 							<div class="col-xs-1"> - </div>
 							<div class="col-xs-4 form-element">
-								<select class="form-control">
+								<select class="form-control goals2">
 									{{#each goals}}
 										<option value="{{goal}}">{{goal}}</option>	
 									{{/each}}
 								</select>		
 							</div>
 							<div class="col-xs-2">
-								<button class="btn btn-primary">BET</button>
+								<button class="btn btn-primary btn-bet" id="bet{{_id}}">BET</button>
 							</div>
 						</div>
 						<div class="row">
-							<h4>Your bet: {{goal1}} - {{goal2}}</h4>
+							<h4>Your bet: {{betGoal1}} - {{betGoal2}}</h4>
 						</div>
 					</div>
 				</div>

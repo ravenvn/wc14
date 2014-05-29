@@ -66,6 +66,10 @@ h1, h2, h3, h4, h5, h6, p {
     color: #0f0;
 }
 
+#datetimepicker {
+    max-width: 200px;
+}
+
 @media screen and (max-width: 768px) {
     .form-element {
         padding:0;

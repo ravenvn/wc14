@@ -4,6 +4,11 @@
     "basePackages": {
       "bootstrap-3": {},
       "accounts-ui-bootstrap-3": {},
+      "moment": {},
+      "bootstrap3-datetimepicker": {},
+      "font-awesome": {},
+      "moment-timezone": {},
+      "roles": {},
       "iron-router": {}
     },
     "packages": {
@@ -16,6 +21,31 @@
         "git": "https://github.com/mangasocial/meteor-accounts-ui-bootstrap-3.git",
         "tag": "v0.3.0-1",
         "commit": "93ffa5d0e325dc7026de89f6d90c178fa04bdd3a"
+      },
+      "moment": {
+        "git": "https://github.com/acreeger/meteor-moment.git",
+        "tag": "v2.6.0",
+        "commit": "26156df681750fd6e6ed77043eef32b6653ebbdf"
+      },
+      "bootstrap3-datetimepicker": {
+        "git": "https://github.com/tsega/meteor-bootstrap3-datetimepicker.git",
+        "tag": "v0.0.5",
+        "commit": "30b5fa0759f98b75761772ad891876408f7cc8c4"
+      },
+      "font-awesome": {
+        "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
+        "tag": "v4.1.0",
+        "commit": "ce6b1e92715d1938babc5d69c655c17e387f5926"
+      },
+      "moment-timezone": {
+        "git": "https://github.com/acreeger/meteor-moment-timezone",
+        "tag": "v0.0.1.4",
+        "commit": "feb364efb1ec0cefb870d5981b2b836b45211455"
+      },
+      "roles": {
+        "git": "https://github.com/alanning/meteor-roles.git",
+        "tag": "v1.2.9",
+        "commit": "969b17fac5dfec66b6b12bfce4e37471d1a241d4"
       },
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",

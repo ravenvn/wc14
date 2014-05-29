@@ -35,9 +35,10 @@
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<h4>Thursday 12 June</h4>
+						<h4>{{date}}</h4>
+						{{#each matches}}
 						<div class="col-sm-3">							
-							<h5>Barazil vs Croatia</h5>
+							<h5>{{team1.name}} vs {{team2.name}}</h5>
 							<table class="table table-striped">
 								<thead>
 									<th>No.</th>
@@ -45,73 +46,17 @@
 									<th>Score</th>
 								</thead>
 								<tbody>
-								{{#each pridicts}}
-								<tr>
-									<td>{{no}}</td>
-									<td>{{name}}</td>
-									<td>{{score}}</td>
-								</tr>
+								{{#each betInfo}}
+									<tr>
+										<td>{{no}}</td>
+										<td>{{name}}</td>
+										<td>{{betGoal1}} - {{betGoal2}}</td>
+									</tr>
 								{{/each}}
 								</tbody>
 							</table>		
 						</div>
-						<div class="col-sm-3">							
-							<h5>Barazil vs Croatia</h5>
-							<table class="table table-striped">
-								<thead>
-									<th>No.</th>
-									<th>Name</th>
-									<th>Score</th>
-								</thead>
-								<tbody>
-								{{#each pridicts}}
-								<tr>
-									<td>{{no}}</td>
-									<td>{{name}}</td>
-									<td>{{score}}</td>
-								</tr>
-								{{/each}}
-								</tbody>
-							</table>		
-						</div>
-						<div class="col-sm-3">							
-							<h5>Barazil vs Croatia</h5>
-							<table class="table table-striped">
-								<thead>
-									<th>No.</th>
-									<th>Name</th>
-									<th>Score</th>
-								</thead>
-								<tbody>
-								{{#each pridicts}}
-								<tr>
-									<td>{{no}}</td>
-									<td>{{name}}</td>
-									<td>{{score}}</td>
-								</tr>
-								{{/each}}
-								</tbody>
-							</table>		
-						</div>
-						<div class="col-sm-3">							
-							<h5>Barazil vs Croatia</h5>
-							<table class="table table-striped">
-								<thead>
-									<th>No.</th>
-									<th>Name</th>
-									<th>Score</th>
-								</thead>
-								<tbody>
-								{{#each pridicts}}
-								<tr>
-									<td>{{no}}</td>
-									<td>{{name}}</td>
-									<td>{{score}}</td>
-								</tr>
-								{{/each}}
-								</tbody>
-							</table>		
-						</div>
+						{{/each}}
 					</div>
 				</div>
 			</div>
