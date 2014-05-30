@@ -46,12 +46,35 @@ Template.input_matches.events({
   'keyup #edit_score': function(e, t) {
     if (e.which === 13) {
       var goals = $('#edit_score').val().split("-");
-      Matches.update({_id: this._id}, {$set: {goal1: $.trim(goals[0]), goal2: $.trim(goals[1])}});
+      var goal1 = $.trim(goals[0]);
+      var goal2 = $.trim(goals[1]);
+      var match_id = this._id;
+
+      // update match score
+      Matches.update({_id: match_id}, {$set: {goal1: goal1, goal2: goal2}});
+      
+      // update user score
+      var users = Meteor.users.find({}).fetch();
+      users.forEach(function (user) {
+        var betInfo = BetInfo.findOne({match_id: match_id, user_id: user._id});
+
+        if (betInfo != null) {
+          if (betInfo.goal1 == goal1 && betInfo.goal2 == goal2) // 1 score exactly
+            Meteor.users.update({_id: user._id}, {$inc: {"profile.score": 5}});
+          else {
+            if ((betInfo.goal1 - betInfo.goal2) * (goal1 - goal2) >= 0) // win/draw exactly
+                Meteor.users.update({_id: user._id}, {$inc: {"profile.score": 3}});
+            if (betInfo.goal1 == goal1 || betInfo.goal2 == goal2) // 1 score exactly
+                Meteor.users.update({_id: user._id}, {$inc: {"profile.score": 1}});
+          }
+        }
+      });
+
       Session.set('score_input', null);
     }
     if (e.which === 27) {
       Session.set('score_input', null);
-    }  
+    }
   },
 
   'focusout #edit_score': function(e, t) {

@@ -7,11 +7,6 @@ var focusText = function(i) {
   i.select();
 };
 
-Template.index.ranks = function() {
-	// return Ranks.find()
-	return [{name:"Herve.Baran", score:100, rank:1}, {name:"Ha.Do", score:99, rank:2}, {name:"Vinh.Ngo", score:98, rank:3}];
-};
-
 Template.index.date = function() {
 	var months = ["January", "February", "Match", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	var tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
@@ -39,8 +34,30 @@ Template.index.matches = function() {
 			bet.betGoal2 = bets[j].goal2;
 			allBets.push(bet);
 		}
-		tomorrowMatches[i].betInfo = allBets;		
+		tomorrowMatches[i].betInfo = allBets;
 	}
-	
+
 	return tomorrowMatches;
+}
+
+function compareScore(a, b) {
+	if (a.profile.score < b.profile.score) return -1;
+	else if (a.profile.score > b.profile.score) return 1;
+	return 0;
+}
+
+Template.index.ranks = function() {
+	var users = Meteor.users.find({}).fetch();
+	users.forEach(function (user) {
+		if (user.profile.score == null) user.profile.score = 0;
+	});
+	users.sort(compareScore);
+	var rank = 1;
+	for (var i = 0; i < users.length; i++) {
+		users[i].rank = rank;
+		if (i == users.length - 1) rank++;
+		else if (users[i].profile.score < users[i+1].profile.score) rank++;
+	}
+
+	return users;
 }
