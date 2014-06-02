@@ -56,18 +56,24 @@ Template.input_matches.events({
       // update user score
       var users = Meteor.users.find({}).fetch();
       users.forEach(function (user) {
-        var betInfo = BetInfo.findOne({match_id: match_id, user_id: user._id});
-
-        if (betInfo != null) {
-          if (betInfo.goal1 == goal1 && betInfo.goal2 == goal2) // 1 score exactly
-            Meteor.users.update({_id: user._id}, {$inc: {"profile.score": 5}});
-          else {
-            if ((betInfo.goal1 - betInfo.goal2) * (goal1 - goal2) >= 0) // win/draw exactly
-                Meteor.users.update({_id: user._id}, {$inc: {"profile.score": 3}});
-            if (betInfo.goal1 == goal1 || betInfo.goal2 == goal2) // 1 score exactly
-                Meteor.users.update({_id: user._id}, {$inc: {"profile.score": 1}});
+        var score = 0;
+        var betInfo = BetInfo.find({user_id: user._id}).fetch();
+        betInfo.forEach(function (bet) {
+          var match = Matches.findOne({_id: bet.match_id});
+          if (match != null && match.goal1 != null && match.goal2 != null) {
+            if (bet.goal1 == match.goal1 && bet.goal2 == goal2) // bet exactly
+              score += 5;
+            else {
+              if (bet.goal1 == bet.goal2 && match.goal1 == match.goal2) // draw - draw
+                score += 3;
+              else if ((bet.goal1 - bet.goal2) * (match.goal1 - match.goal2) > 0) // win/lose - win/lose
+                score += 3;
+              if (bet.goal1 == match.goal1 || bet.goal2 == match.goal2) // bet exactly 1 score
+                score += 1;
+            }
           }
-        }
+        });
+        Meteor.users.update({_id: user._id}, {$set: {"profile.score": score}});        
       });
 
       Session.set('score_input', null);
@@ -82,7 +88,40 @@ Template.input_matches.events({
   },
 
   'click .delete_item': function() {
-    Matches.remove({_id: this._id});
+    var confirm = window.confirm("Do you really want to delete this match?");
+    if (confirm == true) {
+      // remove this match
+      Matches.remove({_id: this._id});
+      var betInfo = BetInfo.find({match_id: this._id}).fetch();
+      // remove all bet info of this match
+      betInfo.forEach(function (bet) {
+        BetInfo.remove({_id: bet._id});
+      });
+
+      // re-calculate score of users
+      // update user score
+      var users = Meteor.users.find({}).fetch();
+      users.forEach(function (user) {
+        var score = 0;
+        var betInfo = BetInfo.find({user_id: user._id}).fetch();
+        betInfo.forEach(function (bet) {
+          var match = Matches.findOne({_id: bet.match_id});
+          if (match != null && match.goal1 != null && match.goal2 != null) {
+            if (bet.goal1 == match.goal1 && bet.goal2 == goal2) // bet exactly
+              score += 5;
+            else {
+              if (bet.goal1 == bet.goal2 && match.goal1 == match.goal2) // draw - draw
+                score += 3;
+              else if ((bet.goal1 - bet.goal2) * (match.goal1 - match.goal2) > 0) // win/lose - win/lose
+                score += 3;
+              if (bet.goal1 == match.goal1 || bet.goal2 == match.goal2) // bet exactly 1 score
+                score += 1;
+            }
+          }
+        });
+        Meteor.users.update({_id: user._id}, {$set: {"profile.score": score}});        
+      });
+    }
   }
   // 'keyup #add-category': function(e, t) {
   //   if (e.which === 13) {

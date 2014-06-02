@@ -41,8 +41,8 @@ Template.index.matches = function() {
 }
 
 function compareScore(a, b) {
-	if (a.profile.score < b.profile.score) return -1;
-	else if (a.profile.score > b.profile.score) return 1;
+	if (a.profile.score > b.profile.score) return -1;
+	else if (a.profile.score < b.profile.score) return 1;
 	return 0;
 }
 
@@ -56,7 +56,7 @@ Template.index.ranks = function() {
 	for (var i = 0; i < users.length; i++) {
 		users[i].rank = rank;
 		if (i == users.length - 1) rank++;
-		else if (users[i].profile.score < users[i+1].profile.score) rank++;
+		else if (users[i].profile.score > users[i+1].profile.score) rank++;
 	}
 
 	return users;
