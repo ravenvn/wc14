@@ -49,6 +49,10 @@ Template.input_matches.events({
       var goal1 = $.trim(goals[0]);
       var goal2 = $.trim(goals[1]);
       var match_id = this._id;
+      if (goal1 != parseInt(goal1) || goal2 != parseInt(goal2) ) {
+        goal1 = null;
+        goal2 = null;
+      }
 
       // update match score
       Matches.update({_id: match_id}, {$set: {goal1: goal1, goal2: goal2}});
