@@ -1,6 +1,6 @@
 <template name="bet">
 	<div class="row">
-		{{#each matches}}	
+		{{#each matches}}
 			<div class="col-sm-6">
 				<div class="panel panel-default text-center">
 					<div class="panel-heading">
@@ -20,17 +20,17 @@
 							<div class="col-xs-4 form-element">
 								<select class="form-control goals1">
 									{{#each goals}}
-										<option value="{{goal}}">{{goal}}</option>	
+										<option value="{{goal}}">{{goal}}</option>
 									{{/each}}
-								</select>		
+								</select>
 							</div>
 							<div class="col-xs-1"> - </div>
 							<div class="col-xs-4 form-element">
 								<select class="form-control goals2">
 									{{#each goals}}
-										<option value="{{goal}}">{{goal}}</option>	
+										<option value="{{goal}}">{{goal}}</option>
 									{{/each}}
-								</select>		
+								</select>
 							</div>
 							<div class="col-xs-2">
 								<button class="btn btn-primary btn-bet" id="bet{{_id}}">BET</button>
@@ -48,18 +48,19 @@
 		<div class="col-xs-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h4>Bonus question</h4>
+					<h4>Bonus questions</h4>
 				</div>
 				<div class="panel-body">
-					<h4>{{question}}</h4>
+					{{#each questions}}
+					<h4>{{index}}. {{question}}</h4>
 					<div class="row">
 						<div class="col-xs-4 form-element"><input type="text" class="form-control"/></div>
-						<div class="col-xs-3"><button class="btn btn-primary">Answer</button></div>						
+						<div class="col-xs-3"><button class="btn btn-primary btn-answer" id="answer{{_id}}">Answer</button></div>
 					</div>
 					<div class="row">
-						<h4>Your answer: {{answer}}</h4>	
+						<h4>Your answer: {{yourAnswer}}</h4>
 					</div>
-					
+					{{/each}}
 				</div>
 			</div>
 		</div>

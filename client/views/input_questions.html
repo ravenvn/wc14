@@ -1,31 +1,29 @@
-<template name="input_matches">
+<template name="input_questions">
 	<div class="row">
 		<div class="col-sm-10 col-sm-offset-1">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h4>Matches List</h4>
+					<h4>Questions List</h4>
 				</div>
 				<div class="panel-body">
 					<table class="table table-striped">
 						<thead>
-							<th>No.</th>
-							<th>Team 1</th>
-							<th>Team 2</th>
-							<th>Score</th>
-							<th>Time</th>
+							<th width="10%">No.</th>
+							<th width="50%">Question</th>
+							<th width="10%">Answer</th>
+							<th width="30%">Date</th>
 						</thead>
 						<tbody>
-							{{#each matches}}
+							{{#each questions}}
 								<tr>
 									<td>{{index}}</td>
-									<td><img src="{{team1.flag}}" alt="{{team1.name}}">{{team1.name}}</td>
-									<td><img src="{{team2.flag}}" alt="{{team2.name}}">{{team2.name}}</td>
+									<td>{{question}}</td>
 									{{#if editing}}
 										<td>
-										<input type="text" id="edit_score" class="form-control pull-right" value="{{goal1}} - {{goal2}}"/>
+										<input type="text" id="edit_answer" class="form-control pull-right" value="{{answer}}"/>
 										</td>
 									{{else}}
-										<td class="score">{{goal1}} - {{goal2}}</td>
+										<td class="answer">{{answer}}</td>
 									{{/if}}
 									<td>{{time}}</td>
 									<td><button type="button" class="close delete_item" id="{{_id}}">x</button></td>
@@ -35,21 +33,9 @@
 								<tr>
 									<td></td>
 									<td>
-										<select name="team1" id="team1" class="form-control">
-											{{#each teams}}
-												<option value="{{flag}}">{{name}}</option>
-											{{/each}}
-										</select>
+										<input type="text" id="add_question" class="form-control pull-right"/>
 									</td>
-									<td>
-										<select name="team2" id="team2" class="form-control">
-											{{#each teams}}
-												<option value="{{flag}}">{{name}}</option>
-											{{/each}}
-										</select>
-									</td>
-									<td>
-									</td>
+									<td></td>
 									<td>
 										<div class="input-group" id="datetimepicker">
 					    					<input class="set-due-date form-control" type="text" id="time"/>

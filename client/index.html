@@ -1,7 +1,12 @@
 <head>
-	<title>Welcome to beting site</title>
+	<title>World Cup 2014 Jonckers Bet</title>
 </head>
 <template name="index">
+	<div class="row">
+		<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2" style="margin-bottom: 5px;">
+			<img src="wc14.png" alt="world cup 2014" class="img-responsive">
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-sm-3">
 			<div class="panel">
@@ -20,7 +25,7 @@
 							<tr>
 								<td>{{rank}}</td>
 								<td>{{username}}</td>
-								<td>{{profile.score}}</td>
+								<td>{{score}}</td>
 							</tr>
 							{{/each}}
 						</tbody>
@@ -28,16 +33,16 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-9">
+		<div class="col-sm-9">			
 			<div class="panel">
 				<div class="panel-heading">
-					<h4><b>Bet Infomation</b></h4>
+					<h4><b>Bet Infomation of Matches within next 24h</b></h4>
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<h4>{{date}}</h4>
 						{{#each matches}}
-						<div class="col-sm-3">							
+						<div class="col-sm-3">
+							<h5>{{time}}</h5>
 							<h5>{{team1.name}} vs {{team2.name}}</h5>
 							<table class="table table-striped">
 								<thead>
@@ -54,7 +59,7 @@
 									</tr>
 								{{/each}}
 								</tbody>
-							</table>		
+							</table>
 						</div>
 						{{/each}}
 					</div>
