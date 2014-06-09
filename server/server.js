@@ -1,6 +1,26 @@
 Meteor.startup(function () {
     // code to run on server at startup
     process.env.MAIL_URL = "smtp://nanyangbk@gmail.com:nguoidensau@smtp.gmail.com:465/";
+
+    // init users
+    if (Meteor.users.find().fetch().length === 0) {
+    	var users = [
+    		{username: "Mickey", email: "vinh.ngo@jonckers.com", roles:['admin']},
+    		{username: "Herve", email: "herve.baran@jonckers.com", roles:['admin']},
+    		{username: "Ha_", email: "ha.do@jonckers.com", roles:[]}
+    	];
+    	_.each(users, function(userData) {
+    		var id, user;
+    		id = Accounts.createUser({
+    			username: userData.username,
+    			email: userData.email,
+    			password: "12345678",
+    			profile: {}
+    		});
+    		Roles.addUsersToRoles(id, userData.roles)
+    	});
+    }
+
     // init FIFA Worldcup teams
     // Teams.remove({});
     if (Teams.find().count() === 0) {
