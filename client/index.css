@@ -25,7 +25,7 @@ h1, h2, h3, h4, h5, h6, p {
     }
 
 #push, #footer {
-    height: 30px;
+    height: 30px;    
 }
 
 #footer {
@@ -68,6 +68,21 @@ h1, h2, h3, h4, h5, h6, p {
 
 #datetimepicker {
     max-width: 200px;
+}
+
+.green {
+    color: #0d62a2;
+}
+.red {
+    color: #f00;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.form-element {
+    padding: 5px;
 }
 
 @media screen and (max-width: 768px) {

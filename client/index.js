@@ -19,18 +19,18 @@ function addDays(date, days) {
 // 	return tomorrow.getDate() + " " + months[tomorrow.getMonth()];
 // }
 
-Template.index.matches = function() {
+Template.index.upcommingMatches = function() {
 	var now = new Date();
-	var within24hMatches = [];
+	var upcommingMatches = [];
 	var matches = Matches.find({}).fetch();
 	matches.forEach(function (match) {
-		if (now < match.time && now >= addDays(match.time, -1)) {
-			within24hMatches.push(match);
+		if (match.time > now) {
+			upcommingMatches.push(match);
 		}
 	});
 
-	for (var i = 0; i < within24hMatches.length; i++) {
-		var bets = BetInfo.find({match_id: within24hMatches[i]._id}).fetch();
+	for (var i = 0; i < upcommingMatches.length; i++) {
+		var bets = BetInfo.find({match_id: upcommingMatches[i]._id}).fetch();
 		var allBets = [];
 		for (var j = 0; j < bets.length; j++) {
 			var bet = Object();
@@ -40,10 +40,37 @@ Template.index.matches = function() {
 			bet.betGoal2 = bets[j].goal2;
 			allBets.push(bet);
 		}
-		within24hMatches[i].betInfo = allBets;
+		upcommingMatches[i].betInfo = allBets;
 	}
 
-	return within24hMatches;
+	return upcommingMatches;
+}
+
+Template.index.last24hMatches = function() {
+	var now = new Date();
+	var last24hMatches = [];
+	var matches = Matches.find({}).fetch();
+	matches.forEach(function (match) {
+		if (match.time < now && match.time >= addDays(now, -1)) {
+			last24hMatches.push(match);
+		}
+	});
+
+	for (var i = 0; i < last24hMatches.length; i++) {
+		var bets = BetInfo.find({match_id: last24hMatches[i]._id}).fetch();
+		var allBets = [];
+		for (var j = 0; j < bets.length; j++) {
+			var bet = Object();
+			bet.no = j + 1;
+			bet.name = Meteor.users.findOne({_id: bets[j].user_id}).username;
+			bet.betGoal1 = bets[j].goal1;
+			bet.betGoal2 = bets[j].goal2;
+			allBets.push(bet);
+		}
+		last24hMatches[i].betInfo = allBets;
+	}
+
+	return last24hMatches;
 }
 
 function compareScore(a, b) {

@@ -1,0 +1,25 @@
+<template name="bonusQuestions">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4>Bonus questions</h4>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+					{{#each questions}}
+						<h4>{{index}}. {{question}}</h4>
+						<div class="row">
+							<div class="col-xs-4 form-element"><input type="text" class="form-control"/></div>
+							<div class="col-xs-3"><button class="btn btn-primary btn-answer" id="answer{{_id}}" style="margin-top:4px;">Answer</button></div>
+						</div>
+						<div class="row">
+							<h4>My answer: {{myAnswer}}</h4>
+						</div>		
+					{{/each}}
+					</div>
+				</div>	
+			</div>			
+		</div>
+	</div>
+</template>
