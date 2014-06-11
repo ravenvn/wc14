@@ -19,18 +19,18 @@ function addDays(date, days) {
 // 	return tomorrow.getDate() + " " + months[tomorrow.getMonth()];
 // }
 
-Template.index.upcommingMatches = function() {
+Template.index.upcomingMatches = function() {
 	var now = new Date();
-	var upcommingMatches = [];
+	var upcomingMatches = [];
 	var matches = Matches.find({}).fetch();
 	matches.forEach(function (match) {
 		if (match.time > now) {
-			upcommingMatches.push(match);
+			upcomingMatches.push(match);
 		}
 	});
 
-	for (var i = 0; i < upcommingMatches.length; i++) {
-		var bets = BetInfo.find({match_id: upcommingMatches[i]._id}).fetch();
+	for (var i = 0; i < upcomingMatches.length; i++) {
+		var bets = BetInfo.find({match_id: upcomingMatches[i]._id}).fetch();
 		var allBets = [];
 		for (var j = 0; j < bets.length; j++) {
 			var bet = Object();
@@ -40,10 +40,10 @@ Template.index.upcommingMatches = function() {
 			bet.betGoal2 = bets[j].goal2;
 			allBets.push(bet);
 		}
-		upcommingMatches[i].betInfo = allBets;
+		upcomingMatches[i].betInfo = allBets;
 	}
 
-	return upcommingMatches;
+	return upcomingMatches;
 }
 
 Template.index.last24hMatches = function() {

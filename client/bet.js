@@ -13,25 +13,25 @@ Template.bet.goals = function() {
 	return goals;
 }
 
-Template.bet.upcommingMatches = function() {
+Template.bet.upcomingMatches = function() {
 	var now = new Date();
-	var upcommingMatches = [];
+	var upcomingMatches = [];
 	var matches = Matches.find({}).fetch();
 	matches.forEach(function (match) {
 		if (match.time > now) {
-			upcommingMatches.push(match);
+			upcomingMatches.push(match);
 		}
 	});
 
-	for (var i = 0; i < upcommingMatches.length; i++) {
-		var betInfo = BetInfo.findOne({match_id: upcommingMatches[i]._id, user_id: Meteor.userId()});
+	for (var i = 0; i < upcomingMatches.length; i++) {
+		var betInfo = BetInfo.findOne({match_id: upcomingMatches[i]._id, user_id: Meteor.userId()});
 		if (betInfo != null) {
-			upcommingMatches[i].betGoal1 = betInfo.goal1;
-			upcommingMatches[i].betGoal2 = betInfo.goal2;
+			upcomingMatches[i].betGoal1 = betInfo.goal1;
+			upcomingMatches[i].betGoal2 = betInfo.goal2;
 		}
 	}
 
-	return upcommingMatches;
+	return upcomingMatches;
 }
 
 

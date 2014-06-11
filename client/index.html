@@ -36,11 +36,11 @@
 		<div class="col-sm-9">			
 			<div class="panel">
 				<div class="panel-heading">
-					<h4><b>Bet Information of upcomming Matches</b></h4>
+					<h4><b>Bet Information of upcoming Matches</b></h4>
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						{{#each upcommingMatches}}
+						{{#each upcomingMatches}}
 							<div class="col-sm-4">
 								<div class="panel panel-default text-center">
 									<div class="panel-heading">
@@ -52,7 +52,7 @@
 											<thead>
 												<th class="text-center">No.</th>
 												<th class="text-center">Name</th>
-												<th class="text-center">Score</th>
+												<th class="text-center">Bet</th>
 											</thead>
 											<tbody>
 											{{#each betInfo}}
@@ -83,14 +83,14 @@
 									<div class="panel-heading">
 										<h5>{{time}}</h5>
 										<h5 class="green bold">{{team1.name}} vs {{team2.name}}</h5>
-										<h5 class="red">{{goal1}} - {{goal2}}</h5>
+										<h5 class="red bold">{{goal1}} - {{goal2}}</h5>
 									</div>
 									<div class="panel-body">
 										<table class="table table-striped">
 											<thead>
 												<th class="text-center">No.</th>
 												<th class="text-center">Name</th>
-												<th class="text-center">Score</th>
+												<th class="text-center">Bet</th>
 											</thead>
 											<tbody>
 											{{#each betInfo}}

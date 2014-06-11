@@ -6,7 +6,7 @@ function addDays(date, days) {
 
 Template.bonusQuestions.questions = function() {
 	var now = new Date();
-	var upcommingQuestions = [];
+	var upcomingQuestions = [];
 	var i = 1;
 	var questions = Questions.find({}).fetch();
 	questions.forEach(function (question) {
@@ -15,11 +15,11 @@ Template.bonusQuestions.questions = function() {
 			var myAnswer = Answers.findOne({question_id: question._id, user_id: Meteor.userId()});
 			if (myAnswer != null)
 				question.myAnswer = myAnswer.answer;
-			upcommingQuestions.push(question);
+			upcomingQuestions.push(question);
 		}
 	});
 
-	return upcommingQuestions;
+	return upcomingQuestions;
 }
 
 Template.bonusQuestions.events({
