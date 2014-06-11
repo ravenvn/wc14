@@ -38,7 +38,8 @@ Template.bet.upcomingMatches = function() {
 Template.bet.events({
   'click .btn-bet': function(e, t) {
   	// check time for prevent cheating
-	var now = new Date();
+	// var now = new Date();
+	var now = Session.get("time");
 	var match_time = Matches.findOne({_id: this._id}).time;
 	if (now >= match_time) {
 		alert("This match has already started. You can't bet anymore. Please refresh the page.");

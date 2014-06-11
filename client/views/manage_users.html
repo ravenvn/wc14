@@ -1,0 +1,30 @@
+<template name="manage_users">
+	<div class="row">
+		<div class="col-sm-10 col-sm-offset-1">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4>Users List</h4>
+				</div>
+				<div class="panel-body">
+					<table class="table table-striped">
+						<thead>
+							<th width="10%">No.</th>
+							<th width="30%">Username</th>
+							<th width="60%">Email</th>
+						</thead>
+						<tbody>
+							{{#each users}}
+								<tr>
+									<td>{{index}}</td>
+									<td>{{username}}</td>
+									<td>{{email}}</td>
+									<td><button type="button" class="close delete_item" id="{{_id}}">x</button></td>
+								</tr>
+							{{/each}}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

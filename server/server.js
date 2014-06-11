@@ -2,6 +2,12 @@ Meteor.startup(function () {
     // code to run on server at startup
     process.env.MAIL_URL = "smtp://nanyangbk@gmail.com:nguoidensau@smtp.gmail.com:465/";
 
+    Meteor.methods({
+        getServerTime: function () {
+            return new Date();
+        }
+    });
+
     // init users
     if (Meteor.users.find().fetch().length === 0) {
     	var users = [
