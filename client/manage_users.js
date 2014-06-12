@@ -1,43 +1,32 @@
-function addDays(date, days) {
-  var d2 = new Date(date);
-  d2.setDate(d2.getDate() + days);
-  return d2;
-}
-
-Template.bonusQuestions.questions = function() {
-	var now = new Date();
-	var upcomingQuestions = [];
+Template.manage_users.users = function() {
+	var users = Meteor.users.find({}).fetch();
 	var i = 1;
-	var questions = Questions.find({}).fetch();
-	questions.forEach(function (question) {
-		if (question.time > now) {
-			question.index = i++;
-			var myAnswer = Answers.findOne({question_id: question._id, user_id: Meteor.userId()});
-			if (myAnswer != null)
-				question.myAnswer = myAnswer.answer;
-			upcomingQuestions.push(question);
-		}
+	users.forEach(function (user) {
+		user.index = i++;
+		user.email = user.emails[0].address;
 	});
 
-	return upcomingQuestions;
+	return users;
 }
 
-Template.bonusQuestions.events({
-	'click .btn-answer': function(e, t) {
-  	// check time for prevent cheating
-	// var now = new Date();
-	var now = Session.get("time");
-	var match_time = Questions.findOne({_id: this._id}).time;
-	if (now >= match_time) {
-		alert("The question is expired. You can't answer anymore. Please refresh the page.");
-		return;
-	}
+Template.manage_users.events({
+	'click .delete_item': function() {
+    	var confirm = window.confirm("Do you really want to delete this question?");
+	    if (confirm == true) {
+	      // remove this user
+	      Meteor.users.remove({_id: this._id});
 
-  	var answer_content = $('#' + e.currentTarget.id).closest('.row').find('input:first').val().trim();
-  	var answer = Answers.findOne({question_id: this._id, user_id: Meteor.userId()});
-  	if (answer == null)
-  		Answers.insert({question_id: this._id, user_id: Meteor.userId(), answer: answer_content});
-  	else
-  		Answers.update({_id: answer._id}, {$set: {answer: answer_content}});
-  }
+	      // remove all answer of this user
+	      var deleted_answers = Answers.find({user_id: this._id}).fetch();
+	      deleted_answers.forEach(function (deleted_answer) {
+	        Answers.remove({_id: deleted_answer._id});
+	      });
+
+	      // remove all betinfo of this user
+	      var deleted_betInfo = BetInfo.find({user_id: this._id}).fetch();
+	      deleted_betInfo.forEach(function (bet) {
+	      	BetInfo.remove({_id: bet._id});
+	      });
+	    }
+  	}
 });

@@ -65,7 +65,7 @@ Template.input_matches.events({
         betInfo.forEach(function (bet) {
           var match = Matches.findOne({_id: bet.match_id});
           if (match != null && match.goal1 != null && match.goal2 != null) {
-            if (bet.goal1 == match.goal1 && bet.goal2 == goal2) // bet exactly
+            if (bet.goal1 == match.goal1 && bet.goal2 == match.goal2) // bet exactly
               score += 5;
             else {
               if (bet.goal1 == bet.goal2 && match.goal1 == match.goal2) // draw - draw
