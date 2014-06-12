@@ -40,36 +40,39 @@
 				<div class="panel-heading">
 					<h4><b>Bet Information of upcoming Matches</b></h4>
 				</div>
-				<div class="panel-body">
+				<div class="panel-body">					
 					<div class="row">
-						{{#each upcomingMatches}}
-							<div class="col-sm-4">
-								<div class="panel panel-default text-center">
-									<div class="panel-heading">
-										<h5>{{time}}</h5>
-										<h5 class="green bold">{{team1.name}} vs {{team2.name}}</h5>
-									</div>
-									<div class="panel-body">
-										<table class="table table-striped">
-											<thead>
-												<th class="text-center">No.</th>
-												<th class="text-center">Name</th>
-												<th class="text-center">Bet</th>
-											</thead>
-											<tbody>
-											{{#each betInfo}}
-												<tr>
-													<td>{{no}}</td>
-													<td>{{name}}</td>
-													<td>{{betGoal1}} - {{betGoal2}}</td>
-												</tr>
-											{{/each}}
-											</tbody>
-										</table>
-									</div>
+					{{#each upcomingMatches}}
+						<div class="col-sm-4">
+							<div class="panel panel-default text-center">
+								<div class="panel-heading">
+									<h5>{{time}}</h5>
+									<h5 class="green bold"><img src="{{team1.flag}}" alt="{{team1.name}}" width="32px"> {{team1.name}} vs {{team2.name}} <img src="{{team2.flag}}" alt="{{team2.name}}" width="32px"></h5>
+								</div>
+								<div class="panel-body">
+									<table class="table table-striped">
+										<thead>
+											<th class="text-center">No.</th>
+											<th class="text-center">Name</th>
+											<th class="text-center">Bet</th>
+										</thead>
+										<tbody>
+										{{#each betInfo}}
+											<tr>
+												<td>{{no}}</td>
+												<td>{{name}}</td>
+												<td>{{betGoal1}} - {{betGoal2}}</td>
+											</tr>
+										{{/each}}
+										</tbody>
+									</table>
 								</div>
 							</div>
-						{{/each}}
+						</div>
+						{{#if isBreakLine}}
+							<div class="clearfix"></div>
+						{{/if}}
+					{{/each}}					
 					</div>
 				</div>
 			</div>
@@ -79,35 +82,38 @@
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						{{#each last24hMatches}}
-							<div class="col-sm-4">
-								<div class="panel panel-default text-center">
-									<div class="panel-heading">
-										<h5>{{time}}</h5>
-										<h5 class="green bold">{{team1.name}} vs {{team2.name}}</h5>
-										<h5 class="red bold">{{goal1}} - {{goal2}}</h5>
-									</div>
-									<div class="panel-body">
-										<table class="table table-striped">
-											<thead>
-												<th class="text-center">No.</th>
-												<th class="text-center">Name</th>
-												<th class="text-center">Bet</th>
-											</thead>
-											<tbody>
-											{{#each betInfo}}
-												<tr>
-													<td>{{no}}</td>
-													<td>{{name}}</td>
-													<td>{{betGoal1}} - {{betGoal2}}</td>
-												</tr>
-											{{/each}}
-											</tbody>
-										</table>
-									</div>
+					{{#each last24hMatches}}
+						<div class="col-sm-4">
+							<div class="panel panel-default text-center">
+								<div class="panel-heading">
+									<h5>{{time}}</h5>
+									<h5 class="green bold"><img src="{{team1.flag}}" alt="{{team1.name}}" width="32px"> {{team1.name}} vs {{team2.name}} <img src="{{team2.flag}}" alt="{{team2.name}}" width="32px"></h5>
+									<h5 class="red bold">{{goal1}} - {{goal2}}</h5>
+								</div>
+								<div class="panel-body">
+									<table class="table table-striped">
+										<thead>
+											<th class="text-center">No.</th>
+											<th class="text-center">Name</th>
+											<th class="text-center">Bet</th>
+										</thead>
+										<tbody>
+										{{#each betInfo}}
+											<tr>
+												<td>{{no}}</td>
+												<td>{{name}}</td>
+												<td>{{betGoal1}} - {{betGoal2}}</td>
+											</tr>
+										{{/each}}
+										</tbody>
+									</table>
 								</div>
 							</div>
-						{{/each}}
+						</div>
+						{{#if isBreakLine}}
+							<div class="clearfix"></div>
+						{{/if}}
+					{{/each}}
 					</div>
 				</div>
 			</div>
