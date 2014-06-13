@@ -8,47 +8,50 @@
 				<div class="panel-body">
 					<div class="row">
 					{{#each upcomingMatches}}
-					<div class="col-sm-6">
-						<div class="panel panel-default text-center">
-							<div class="panel-heading">
-								<h4>{{time}}</h4>
-							</div>
-							<div class="panel-body">
-								<div class="row">
-									<div class="col-xs-4 form-element">
-										<h4><img src="{{team1.flag}}" alt="{{team1.name}}"> {{team1.name}}</h4>
-									</div>
-									<div class="col-xs-1"><h4>vs</h4></div>
-									<div class="col-xs-4 form-element">
-										<h4><img src="{{team2.flag}}" alt="{{team2.name}}"> {{team2.name}}</h4>
-									</div>
+						<div class="col-sm-6">
+							<div class="panel panel-default text-center">
+								<div class="panel-heading">
+									<h4>{{time}}</h4>
 								</div>
-								<div class="row">
-									<div class="col-xs-4 form-element">
-										<select class="form-control goals1">
-											{{#each goals}}
-												<option value="{{goal}}">{{goal}}</option>
-											{{/each}}
-										</select>
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-xs-4 form-element">
+											<h4><img src="{{team1.flag}}" alt="{{team1.name}}"> {{team1.name}}</h4>
+										</div>
+										<div class="col-xs-1"><h4>vs</h4></div>
+										<div class="col-xs-4 form-element">
+											<h4><img src="{{team2.flag}}" alt="{{team2.name}}"> {{team2.name}}</h4>
+										</div>
 									</div>
-									<div class="col-xs-1"> - </div>
-									<div class="col-xs-4 form-element">
-										<select class="form-control goals2">
-											{{#each goals}}
-												<option value="{{goal}}">{{goal}}</option>
-											{{/each}}
-										</select>
+									<div class="row">
+										<div class="col-xs-4 form-element">
+											<select class="form-control goals1">
+												{{#each goals}}
+													<option value="{{goal}}">{{goal}}</option>
+												{{/each}}
+											</select>
+										</div>
+										<div class="col-xs-1"> - </div>
+										<div class="col-xs-4 form-element">
+											<select class="form-control goals2">
+												{{#each goals}}
+													<option value="{{goal}}">{{goal}}</option>
+												{{/each}}
+											</select>
+										</div>
+										<div class="col-xs-2">
+											<button class="btn btn-primary btn-bet" id="bet{{_id}}">BET</button>
+										</div>
 									</div>
-									<div class="col-xs-2">
-										<button class="btn btn-primary btn-bet" id="bet{{_id}}">BET</button>
+									<div class="row">
+										<h4>My bet: {{betGoal1}} - {{betGoal2}}</h4>
 									</div>
-								</div>
-								<div class="row">
-									<h4>My bet: {{betGoal1}} - {{betGoal2}}</h4>
 								</div>
 							</div>
 						</div>
-					</div>
+						{{#if isBreakLine}}
+							<div class="clearfix"></div>
+						{{/if}}
 					{{/each}}
 					</div>
 				</div>		

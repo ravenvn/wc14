@@ -16,7 +16,11 @@
 							{{#each users}}
 								<tr>
 									<td>{{index}}</td>
-									<td>{{username}}</td>
+									{{#if editing_username}}
+										<td><input type="text" id="edit-username" class="form-control pull-right" value="{{username}}"></td>
+									{{else}}
+										<td class="username">{{username}}</td>
+									{{/if}}		
 									<td>{{email}}</td>
 									<td><button type="button" class="close delete_item" id="{{_id}}">x</button></td>
 								</tr>

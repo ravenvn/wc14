@@ -29,8 +29,12 @@ Template.bet.upcomingMatches = function() {
 			upcomingMatches[i].betGoal1 = betInfo.goal1;
 			upcomingMatches[i].betGoal2 = betInfo.goal2;
 		}
+		if ((i+1)%2 == 0)
+			upcomingMatches[i].isBreakLine = true;
+		else
+			upcomingMatches[i].isBreakLine = false;
 	}
-
+	
 	return upcomingMatches;
 }
 

@@ -9,7 +9,32 @@ Template.manage_users.users = function() {
 	return users;
 }
 
+Template.manage_users.editing_username = function() {
+  return Session.equals("username_edit", this._id);
+}
+
 Template.manage_users.events({
+	'click .username': function(e, t) {		
+		Session.set('username_edit', this._id);
+		Meteor.flush();
+		t.findAll("#edit-username").focus();
+	},
+
+	'focusout #edit-username': function(e, t) {
+    	Session.set('username_edit', null);
+  	},
+
+  	'keyup #edit-username': function(e, t) {
+  		if (e.which === 13) {
+  			var newUsername = $('#edit-username').val().trim();
+  			Meteor.users.update({_id: this._id}, {$set: {username: newUsername}});
+  			Session.set('username_edit', null);
+
+  		} else if (e.which === 27) {
+  			Session.set('username_edit', null);
+  		}
+  	},
+
 	'click .delete_item': function() {
     	var confirm = window.confirm("Do you really want to delete this question?");
 	    if (confirm == true) {
