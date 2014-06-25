@@ -103,11 +103,19 @@ Template.index.ranks = function() {
 		user.score = user.profile.score + user.profile.bonus;
 	});
 	users.sort(compareScore);
-	var rank = 1;
-	for (var i = 0; i < users.length; i++) {
-		users[i].rank = rank;
-		if (i == users.length - 1) rank++;
-		else if (users[i].score > users[i+1].score) rank++;
+	var sameRank = 0; // number players have the same rank 
+	for (var i = 0; i < users.length;) {
+		users[i].rank = i + 1;
+		sameRank = 0; // reset sameRank
+		for (var j = i + 1; j < users.length; j++) {
+			if (users[i].score == users[j].score) {
+				users[j].rank = i + 1;
+				sameRank++;
+			}
+			else
+				break;
+		}
+		i += sameRank + 1;
 	}
 
 	return users;

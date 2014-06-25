@@ -20,5 +20,8 @@ Meteor.publish("Answers", function() {
 });
 
 Meteor.publish("Users", function () {
-	return Meteor.users.find();
+	var user = Meteor.users.findOne({_id: this.userId});
+	if (Roles.userIsInRole(user, 'admin'))
+		return Meteor.users.find();
+	return Meteor.users.find({}, {fields: {emails: 0}});
 });
