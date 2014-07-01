@@ -58,9 +58,16 @@ Template.input_questions.events({
         // calculate socre by bonus questions
         var answers = Answers.find({user_id: user._id}).fetch();
         answers.forEach(function (answer) {
-          var question = Questions.findOne({_id: answer.question_id});
-          if (question != null && question.answer != null && answer.answer != null && question.answer.toLowerCase() == answer.answer.toLowerCase())
-            bonus++;
+          var question = Questions.findOne({_id: answer.question_id});          
+          if (question != null && question.answer != null && answer.answer != null) {
+            var answers_array = question.answer.split("|");
+            for(var i = 0; i < answers_array.length; i++) {
+              if (answers_array[i].toLowerCase().trim() == answer.answer.toLowerCase()) {
+                bonus++;
+                break;
+              }
+            }
+          }           
         });
         Meteor.users.update({_id: user._id}, {$set: {"profile.bonus": bonus}});        
       });
